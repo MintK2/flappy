@@ -8,8 +8,8 @@ print('Path to module:', pygame.__file__)
 WIN_WIDTH = 500
 WIN_HEIGHT = 800
 
-BIRD_IMGS = [pygame.transfrom.scale2x(pygame.image.load(os.path.join("imgs", "bird1.png"))), pygame.transfrom.scale2x(
-    pygame.image.load(os.path.join("imgs", "bird2.png"))), pygame.transfrom.scale2x(pygame.image.load(os.path.join("imgs", "bird3.png")))]
+BIRD_IMGS = [pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "bird1.png"))), pygame.transform.scale2x(
+    pygame.image.load(os.path.join("imgs", "bird2.png"))), pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "bird3.png")))]
 PIPE_IMG = pygame.transform.scale2x(
     pygame.image.load(os.path.join("imgs", "pipe.png")))
 BACKGROUND_IMG = pygame.transform.scale2x(
@@ -78,9 +78,9 @@ class Bird:
             self.img_count = self.ANIMATION_TIME*2
 
         rotated_img = pygame.transform.rotate(self.img, self.tilt)
-        new_rectangle = rotated_img.get_rectangle(
-            center=self.img.get_rectangle(topleft=(self.x, self.y)).center)
-        window.blit(rotated_img, new_rectangle.topleft)
+        new_rect = rotated_img.get_rect(
+            center=self.img.get_rect(topleft=(self.x, self.y)).center)
+        window.blit(rotated_img, new_rect.topleft)
 
     def get_mask(self):
         return pygame.mask.from_surface(self.img)
@@ -89,7 +89,7 @@ class Bird:
 def draw_window(window, bird):
     window.blit(BACKGROUND_IMG, (0, 0))
     bird.draw(window)
-    pygame.display.update
+    pygame.display.update()
 
 
 def main():
@@ -106,5 +106,8 @@ def main():
         bird.move()
         draw_window(window, bird)
 
-    pygame.quit()
+    pygame.display.quit()
     quit()
+
+
+main()
